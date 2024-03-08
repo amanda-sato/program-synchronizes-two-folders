@@ -1,6 +1,26 @@
 import os
 import shutil
 import time
+import argparse
+import logging
+import sys
+from datetime import datetime
+
+def setup_logging(log_file):
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s %(levelname)s %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        filename=log_file
+    )
+
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.DEBUG)
+    console_formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
+    console_handler.setFormatter(console_formatter)
+
+    logging.getLogger().addHandler(console_handler)
+
 
 def list_dir_contents(directory_path):
     for dirpath, dirnames, filenames in os.walk(directory_path):
@@ -11,18 +31,41 @@ def list_dir_contents(directory_path):
         )
 
 def copy_directory(source_path, destination_path):
-    source_folder = os.path.join(source_path, "folder-test")
-    destination_folder = os.path.join(destination_path, "backup-challange")
+    source_folder = source_path
+    destination_folder = destination_path
 
     if os.path.exists(destination_folder):
-        print("A pasta de destino já existe. Sincronizando...")
+        logging.info("The destination folder already exists. Synchronizing...")
         shutil.rmtree(destination_folder)  
 
-    shutil.copytree(source_folder, destination_folder)
+    sync_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    try:
+        shutil.copytree(source_folder, destination_folder)
+
+        logging.info(f"{sync_timestamp} - Synced {source_folder} to {destination_folder}")
+
+        logging.info(f"{sync_timestamp} - Pasta copiada.")
+    
+    except Exception as e:
+        logging.error(f"{sync_timestamp} - Error during synchronization: {str(e)}")
+
     print("Pasta copiada.")
 
-while True:
-    list_dir_contents("/Users/amand/challange-python/program-synchronizes-two-folders/folder-test")
-    copy_directory("/Users/amand/challange-python/program-synchronizes-two-folders", "/Users/amand")
-    time.sleep(30)
 
+def main():
+    parser = argparse.ArgumentParser(description="Folder synchronization program")
+    parser.add_argument("source_path", help="Path to source folder")
+    parser.add_argument("destination_path", help="Path to destination folder")
+    parser.add_argument("log_file", help="Path to the log file")
+    parser.add_argument('--period', '-p', default=30, help="Period in seconds")
+    args = parser.parse_args()
+
+    setup_logging(args.log_file)
+
+    while True:
+        list_dir_contents(args.source_path)
+        copy_directory(args.source_path, args.destination_path)
+        time.sleep(int(args.period))
+
+if __name__ == "__main__":
+    main()

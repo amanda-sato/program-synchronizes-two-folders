@@ -18,3 +18,63 @@
 2024-03-08 14:44:48 WARNING This is a warning message.
 2024-03-08 14:44:48 ERROR This is an error message.
 2024-03-08 14:44:48 CRITICAL This is a critical message.
+2024-03-08 15:08:08 DEBUG This is a debug message.
+2024-03-08 15:08:08 INFO This is an info message.
+2024-03-08 15:08:08 WARNING This is a warning message.
+2024-03-08 15:08:08 ERROR This is an error message.
+2024-03-08 15:08:08 CRITICAL This is a critical message.
+2024-03-08 17:54:37 ERROR 2024-03-08 17:54:37 - Error during synchronization: [WinError 3] O sistema não pode encontrar o caminho especificado: 'C:\\Users\\amand\\challange-python\\program-synchronizes-two-folders\\folder-test\\folder-test'
+2024-03-08 17:57:19 ERROR 2024-03-08 17:57:19 - Error during synchronization: [WinError 3] O sistema não pode encontrar o caminho especificado: 'C:\\Users\\amand\\challange-python\\program-synchronizes-two-folders\\folder-test\\folder-test'
+2024-03-08 17:57:49 ERROR 2024-03-08 17:57:49 - Error during synchronization: [WinError 3] O sistema não pode encontrar o caminho especificado: 'C:\\Users\\amand\\challange-python\\program-synchronizes-two-folders\\folder-test\\folder-test'
+2024-03-08 17:59:34 INFO 2024-03-08 17:59:34 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 17:59:34 INFO 2024-03-08 17:59:34 - Pasta copiada.
+2024-03-08 18:03:37 INFO 2024-03-08 18:03:37 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:03:37 INFO 2024-03-08 18:03:37 - Pasta copiada.
+2024-03-08 18:04:07 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:04:07 INFO 2024-03-08 18:04:07 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:04:07 INFO 2024-03-08 18:04:07 - Pasta copiada.
+2024-03-08 18:07:51 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:07:51 INFO 2024-03-08 18:07:51 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:07:51 INFO 2024-03-08 18:07:51 - Pasta copiada.
+2024-03-08 18:16:17 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:16:17 INFO 2024-03-08 18:16:17 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:16:17 INFO 2024-03-08 18:16:17 - Pasta copiada.
+2024-03-08 18:16:47 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:16:47 INFO 2024-03-08 18:16:47 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:16:47 INFO 2024-03-08 18:16:47 - Pasta copiada.
+2024-03-08 18:20:33 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:20:33 INFO 2024-03-08 18:20:33 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:20:33 INFO 2024-03-08 18:20:33 - Pasta copiada.
+2024-03-08 18:21:21 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:21 INFO 2024-03-08 18:21:21 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:21 INFO 2024-03-08 18:21:21 - Pasta copiada.
+2024-03-08 18:21:22 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:22 INFO 2024-03-08 18:21:22 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:22 INFO 2024-03-08 18:21:22 - Pasta copiada.
+2024-03-08 18:21:23 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:23 INFO 2024-03-08 18:21:23 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:23 INFO 2024-03-08 18:21:23 - Pasta copiada.
+2024-03-08 18:21:24 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:24 INFO 2024-03-08 18:21:24 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:24 INFO 2024-03-08 18:21:24 - Pasta copiada.
+2024-03-08 18:21:25 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:25 INFO 2024-03-08 18:21:25 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:25 INFO 2024-03-08 18:21:25 - Pasta copiada.
+2024-03-08 18:21:26 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:26 INFO 2024-03-08 18:21:26 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:26 INFO 2024-03-08 18:21:26 - Pasta copiada.
+2024-03-08 18:21:27 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:27 INFO 2024-03-08 18:21:27 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:27 INFO 2024-03-08 18:21:27 - Pasta copiada.
+2024-03-08 18:21:54 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:54 INFO 2024-03-08 18:21:54 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:54 INFO 2024-03-08 18:21:54 - Pasta copiada.
+2024-03-08 18:21:55 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:55 INFO 2024-03-08 18:21:55 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:55 INFO 2024-03-08 18:21:55 - Pasta copiada.
+2024-03-08 18:21:56 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:56 INFO 2024-03-08 18:21:56 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:56 INFO 2024-03-08 18:21:56 - Pasta copiada.
+2024-03-08 18:21:57 INFO The destination folder already exists. Synchronizing...
+2024-03-08 18:21:57 INFO 2024-03-08 18:21:57 - Synced C:\Users\amand\challange-python\program-synchronizes-two-folders\folder-test to C:\Users\amand\backup-challange
+2024-03-08 18:21:57 INFO 2024-03-08 18:21:57 - Pasta copiada.
