@@ -23,7 +23,7 @@ def setup_logging(log_file):
     logging.getLogger().addHandler(console_handler)
 
 
-def copy_directory(source_path, destination_path):
+def sync_directory(source_path, destination_path):
     ''' 
     for each empty dir in source path
         if the dir doesn't exist in destination path, create
@@ -94,7 +94,7 @@ def main():
     setup_logging(args.log_file)
 
     while True:
-        copy_directory(args.source_path, args.destination_path)
+        sync_directory(args.source_path, args.destination_path)
         time.sleep(int(args.period))
 
 if __name__ == "__main__":
