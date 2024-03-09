@@ -23,14 +23,6 @@ def setup_logging(log_file):
     logging.getLogger().addHandler(console_handler)
 
 
-def list_dir_contents(directory_path):
-    for dirpath, dirnames, filenames in os.walk(directory_path):
-        print(
-            f"Root: {dirpath}\n"
-            f"Sub-directories: {dirnames}\n"
-            f"Files: {filenames}\n\n"
-        )
-
 def copy_directory(source_path, destination_path):
     ''' 
     for each empty dir in source path
@@ -46,11 +38,13 @@ def copy_directory(source_path, destination_path):
         if the file doesn't exist in the source path, remove.
     '''
     
+    logging.info(f'Syncing from={source_path} to={destination_path}')
+
     for dirpath, _, filenames in os.walk(source_path):
         path = os.path.relpath(dirpath, start=source_path)
 
         if not filenames and not os.path.isdir(os.path.join(destination_path, path)):
-            print(f'Creating directory {path}')
+            logging.info(f'Creating directory {path}')
             os.makedirs(os.path.join(destination_path, path))
         
         for file in filenames:
@@ -59,15 +53,15 @@ def copy_directory(source_path, destination_path):
             dest_file_path = os.path.join(destination_path, file_relpath)
 
             if not os.path.isfile(dest_file_path):
-                print(f'Copying {file_relpath}...')
+                logging.info(f'Copying {file_relpath}...')
                 os.makedirs(os.path.dirname(dest_file_path), exist_ok=True)
                 shutil.copy2(source_file_path, dest_file_path)
             elif not filecmp.cmp(source_file_path, dest_file_path, shallow=False):
-                print(f'Overwriting {file_relpath}...')
+                logging.info(f'Overwriting {file_relpath}...')
                 os.makedirs(os.path.dirname(dest_file_path), exist_ok=True)
                 shutil.copy2(source_file_path, dest_file_path)
             else:
-                print(f'Skipping {file_relpath}')
+                logging.info(f'Skipping {file_relpath}')
         
     for dirpath, _, filenames in os.walk(destination_path):
         path = os.path.relpath(dirpath, start=destination_path)
@@ -78,14 +72,14 @@ def copy_directory(source_path, destination_path):
             dest_file_path = os.path.join(destination_path, file_relpath)
 
             if not os.path.isfile(source_file_path):
-                print(f'Removing {file_relpath}')
+                logging.info(f'Removing {file_relpath}')
                 os.remove(dest_file_path)
 
     for dirpath, _, filenames in os.walk(destination_path, topdown=False):
         path = os.path.relpath(dirpath, start=destination_path)
 
         if not filenames and not os.path.isdir(os.path.join(source_path, path)):
-            print(f'Removing directory {path}')
+            logging.info(f'Removing directory {path}')
             os.rmdir(os.path.join(destination_path, path))
 
 
@@ -100,7 +94,6 @@ def main():
     setup_logging(args.log_file)
 
     while True:
-        list_dir_contents(args.source_path)
         copy_directory(args.source_path, args.destination_path)
         time.sleep(int(args.period))
 
