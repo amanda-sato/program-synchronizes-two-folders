@@ -25,6 +25,8 @@ def setup_logging(log_file):
 
 def sync_directory(source_path, destination_path):
     ''' 
+    Algorithm details:
+    ---
     for each empty dir in source path
         if the dir doesn't exist in destination path, create
         else skip
