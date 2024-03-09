@@ -33,16 +33,25 @@ def list_dir_contents(directory_path):
 
 def copy_directory(source_path, destination_path):
     ''' 
-        for each file in source path 
+    for each empty dir in source path
+        if the dir doesn't exist in destination path, create
+        else skip
+    for each file in source path 
         if the file doesn't exist in destination path, copy.
         if the file exists in the destination path, but the content is different, overwrite.
         if the file exists in the destination path, but the content is the same, skip.
-        for each file in the destination path, 
+    for each empty dir in destination path
+        if the dir doesn't exist in source path, remove.
+    for each file in the destination path, 
         if the file doesn't exist in the source path, remove.
     '''
     
-    for dirpath, dirnames, filenames in os.walk(source_path):
+    for dirpath, _, filenames in os.walk(source_path):
         path = os.path.relpath(dirpath, start=source_path)
+
+        if not filenames and not os.path.isdir(os.path.join(destination_path, path)):
+            print(f'Creating directory {path}')
+            os.makedirs(os.path.join(destination_path, path))
         
         for file in filenames:
             file_relpath = os.path.join(path, file)
@@ -51,31 +60,33 @@ def copy_directory(source_path, destination_path):
 
             if not os.path.isfile(dest_file_path):
                 print(f'Copying {file_relpath}...')
-                # copy code
+                os.makedirs(os.path.dirname(dest_file_path), exist_ok=True)
+                shutil.copy2(source_file_path, dest_file_path)
             elif not filecmp.cmp(source_file_path, dest_file_path, shallow=False):
                 print(f'Overwriting {file_relpath}...')
-                # copy code
+                os.makedirs(os.path.dirname(dest_file_path), exist_ok=True)
+                shutil.copy2(source_file_path, dest_file_path)
             else:
                 print(f'Skipping {file_relpath}')
         
+    for dirpath, _, filenames in os.walk(destination_path):
+        path = os.path.relpath(dirpath, start=destination_path)
 
+        for file in filenames:
+            file_relpath = os.path.join(path, file)
+            source_file_path = os.path.join(source_path, file_relpath)
+            dest_file_path = os.path.join(destination_path, file_relpath)
 
-    # if os.path.exists(destination_folder):
-    #     logging.info("The destination folder already exists. Synchronizing...")
-    #     shutil.rmtree(destination_folder)  
+            if not os.path.isfile(source_file_path):
+                print(f'Removing {file_relpath}')
+                os.remove(dest_file_path)
 
-    # sync_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    # try:
-    #     shutil.copytree(source_folder, destination_folder)
+    for dirpath, _, filenames in os.walk(destination_path, topdown=False):
+        path = os.path.relpath(dirpath, start=destination_path)
 
-    #     logging.info(f"{sync_timestamp} - Synced {source_folder} to {destination_folder}")
-
-    #     logging.info(f"{sync_timestamp} - Pasta copiada.")
-    
-    # except Exception as e:
-    #     logging.error(f"{sync_timestamp} - Error during synchronization: {str(e)}")
-
-    # print("Pasta copiada.")
+        if not filenames and not os.path.isdir(os.path.join(source_path, path)):
+            print(f'Removing directory {path}')
+            os.rmdir(os.path.join(destination_path, path))
 
 
 def main():
