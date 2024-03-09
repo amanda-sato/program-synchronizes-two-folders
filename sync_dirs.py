@@ -4,7 +4,6 @@ import time
 import argparse
 import logging
 import sys
-from datetime import datetime
 import filecmp
 
 def setup_logging(log_file):
