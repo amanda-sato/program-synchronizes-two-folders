@@ -76,6 +76,11 @@ def sync_directory(source_path, destination_path):
                 logging.info(f'Removing {file_relpath}')
                 os.remove(dest_file_path)
 
+    # Last loop will only remove files, leaving empty dirs behind, 
+    # These are then handled separately here.
+    # Using os.walk default topdown approach would try to delete empty dirs
+    # with other (empty) subdirs on them, erroring out. 
+    # This is solved by doing it bottom up (topdown=False)
     for dirpath, _, filenames in os.walk(destination_path, topdown=False):
         path = os.path.relpath(dirpath, start=destination_path)
 
@@ -85,7 +90,7 @@ def sync_directory(source_path, destination_path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Folder synchronization program")
+    parser = argparse.ArgumentParser(description="Syncs a source folder into a destination one.")
     parser.add_argument("source_path", help="Path to source folder")
     parser.add_argument("destination_path", help="Path to destination folder")
     parser.add_argument("log_file", help="Path to the log file")
@@ -97,6 +102,7 @@ def main():
     while True:
         sync_directory(args.source_path, args.destination_path)
         time.sleep(int(args.period))
+
 
 if __name__ == "__main__":
     main()
