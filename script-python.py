@@ -5,6 +5,7 @@ import argparse
 import logging
 import sys
 from datetime import datetime
+import filecmp
 
 def setup_logging(log_file):
     logging.basicConfig(
@@ -31,25 +32,50 @@ def list_dir_contents(directory_path):
         )
 
 def copy_directory(source_path, destination_path):
-    source_folder = source_path
-    destination_folder = destination_path
-
-    if os.path.exists(destination_folder):
-        logging.info("The destination folder already exists. Synchronizing...")
-        shutil.rmtree(destination_folder)  
-
-    sync_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    try:
-        shutil.copytree(source_folder, destination_folder)
-
-        logging.info(f"{sync_timestamp} - Synced {source_folder} to {destination_folder}")
-
-        logging.info(f"{sync_timestamp} - Pasta copiada.")
+    ''' 
+        for each file in source path 
+        if the file doesn't exist in destination path, copy.
+        if the file exists in the destination path, but the content is different, overwrite.
+        if the file exists in the destination path, but the content is the same, skip.
+        for each file in the destination path, 
+        if the file doesn't exist in the source path, remove.
+    '''
     
-    except Exception as e:
-        logging.error(f"{sync_timestamp} - Error during synchronization: {str(e)}")
+    for dirpath, dirnames, filenames in os.walk(source_path):
+        path = os.path.relpath(dirpath, start=source_path)
+        
+        for file in filenames:
+            file_relpath = os.path.join(path, file)
+            source_file_path = os.path.join(source_path, file_relpath)
+            dest_file_path = os.path.join(destination_path, file_relpath)
 
-    print("Pasta copiada.")
+            if not os.path.isfile(dest_file_path):
+                print(f'Copying {file_relpath}...')
+                # copy code
+            elif not filecmp.cmp(source_file_path, dest_file_path, shallow=False):
+                print(f'Overwriting {file_relpath}...')
+                # copy code
+            else:
+                print(f'Skipping {file_relpath}')
+        
+
+
+    # if os.path.exists(destination_folder):
+    #     logging.info("The destination folder already exists. Synchronizing...")
+    #     shutil.rmtree(destination_folder)  
+
+    # sync_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # try:
+    #     shutil.copytree(source_folder, destination_folder)
+
+    #     logging.info(f"{sync_timestamp} - Synced {source_folder} to {destination_folder}")
+
+    #     logging.info(f"{sync_timestamp} - Pasta copiada.")
+    
+    # except Exception as e:
+    #     logging.error(f"{sync_timestamp} - Error during synchronization: {str(e)}")
+
+    # print("Pasta copiada.")
 
 
 def main():
